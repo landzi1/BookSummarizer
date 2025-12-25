@@ -3,8 +3,8 @@ name: Build BookSummarizer
 on:
   push:
     tags:
-      - 'v*' # Uruchomi się tylko jak dodasz tag (np. v1.0), żeby nie budować przy każdej literówce
-  workflow_dispatch: # Pozwala odpalić ręcznie przyciskiem
+      - 'v*'
+  workflow_dispatch:
 
 jobs:
   build:
@@ -23,10 +23,10 @@ jobs:
             OUT_FILE: dist/BookSummarizer.exe
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4  # Zaktualizowano do v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5  # Zaktualizowano do v5
         with:
           python-version: '3.10'
 
@@ -39,7 +39,7 @@ jobs:
         run: ${{ matrix.CMD_BUILD }}
 
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4  # TO NAPRAWIA TWÓJ BŁĄD (v3 -> v4)
         with:
           name: BookSummarizer-${{ matrix.TARGET }}
           path: ${{ matrix.OUT_FILE }}
