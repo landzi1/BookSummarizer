@@ -15,26 +15,36 @@ jobs:
         include:
           - os: ubuntu-latest
             TARGET: linux
-            # Budujemy binarkę, a potem używamy linuxdeploy do zrobienia AppImage
+            # Linux Command:
+            # 1. Znajduje ścieżkę do CustomTkinter
+            # 2. Buduje binarkę z --collect-all (ważne dla CTK na Linux)
+            # 3. Używa linuxdeploy w trybie bezpiecznym (bez FUSE)
             CMD_BUILD: |
-              pyinstaller --noconfirm --onefile --windowed --name "BookSummarizer" --add-data "logo.jpg:." --hidden-import=PIL --hidden-import=customtkinter --hidden-import=gtts --hidden-import=langdetect booksummarizer.py
+              echo "🔍 Checking files..."
+              ls -la
 
-              # Pobieranie linuxdeploy
+              echo "📦 Building Binary with PyInstaller..."
+              pyinstaller --noconfirm --onefile --windowed --name "BookSummarizer" --add-data "logo.jpg:." --collect-all customtkinter --hidden-import=PIL --hidden-import=gtts --hidden-import=langdetect booksummarizer.py
+
+              echo "⬇️ Downloading LinuxDeploy..."
               wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
               chmod +x linuxdeploy-x86_64.AppImage
 
-              # Tworzenie AppImage
-              # -e: plik wykonywalny, -i: ikona, -d: plik desktop
+              echo "🚀 Creating AppImage..."
+              # Fix dla GitHub Actions (FUSE issue)
+              export APPIMAGE_EXTRACT_AND_RUN=1
+
               ./linuxdeploy-x86_64.AppImage --appdir AppDir -e dist/BookSummarizer -i logo.jpg -d BookSummarizer.desktop --output appimage
 
-              # Zmiana nazwy wynikowego pliku na prostszą
+              echo "✅ Renaming..."
               mv BookSummarizer*.AppImage dist/BookSummarizer.AppImage
 
             OUT_FILE: dist/BookSummarizer.AppImage
 
           - os: windows-latest
             TARGET: windows
-            CMD_BUILD: pyinstaller --noconfirm --onefile --windowed --name "BookSummarizer" --add-data "logo.jpg;." --hidden-import=PIL --hidden-import=customtkinter --hidden-import=gtts --hidden-import=langdetect booksummarizer.py
+            # Windows Command:
+            CMD_BUILD: pyinstaller --noconfirm --onefile --windowed --name "BookSummarizer" --add-data "logo.jpg;." --collect-all customtkinter --hidden-import=PIL --hidden-import=gtts --hidden-import=langdetect booksummarizer.py
             OUT_FILE: dist/BookSummarizer.exe
 
     steps:
@@ -45,7 +55,7 @@ jobs:
         with:
           python-version: '3.10'
 
-      # Instalacja zależności systemowych (Tylko Linux)
+      # Instalacja zależności systemowych (Linux)
       - name: Install System Deps (Linux)
         if: matrix.TARGET == 'linux'
         run: |
