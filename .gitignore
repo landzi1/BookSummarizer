@@ -1,3 +1,20 @@
-.env
+# Python cache
 __pycache__/
-*.mp3
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+venv/
+.env
+
+# User Configuration (BARDZO WAŻNE)
+config.json
+
+# Build artifacts
+build/
+dist/
+*.spec
+
+# Distribution files
+*.exe
+*.AppImage
