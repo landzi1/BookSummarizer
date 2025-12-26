@@ -15,13 +15,13 @@ jobs:
         include:
           - os: ubuntu-latest
             TARGET: linux
-            # Linux używa dwukropka (:) jako separatora w add-data
-            CMD_BUILD: pyinstaller --noconfirm --onefile --windowed --name "BookSummarizer" --add-data "logo.jpg:." --hidden-import=PIL --hidden-import=customtkinter --hidden-import=gtts --hidden-import=langdetect main.py
+            # ZMIANA: main.py -> booksummarizer.py
+            CMD_BUILD: pyinstaller --noconfirm --onefile --windowed --name "BookSummarizer" --add-data "logo.jpg:." --hidden-import=PIL --hidden-import=customtkinter --hidden-import=gtts --hidden-import=langdetect booksummarizer.py
             OUT_FILE: dist/BookSummarizer
           - os: windows-latest
             TARGET: windows
-            # Windows używa średnika (;) jako separatora w add-data
-            CMD_BUILD: pyinstaller --noconfirm --onefile --windowed --name "BookSummarizer" --add-data "logo.jpg;." --hidden-import=PIL --hidden-import=customtkinter --hidden-import=gtts --hidden-import=langdetect main.py
+            # ZMIANA: main.py -> booksummarizer.py
+            CMD_BUILD: pyinstaller --noconfirm --onefile --windowed --name "BookSummarizer" --add-data "logo.jpg;." --hidden-import=PIL --hidden-import=customtkinter --hidden-import=gtts --hidden-import=langdetect booksummarizer.py
             OUT_FILE: dist/BookSummarizer.exe
 
     steps:
@@ -32,7 +32,6 @@ jobs:
         with:
           python-version: '3.10'
 
-      # --- TO JEST NOWY KROK NAPRAWIAJĄCY BŁĄD NA LINUXIE ---
       - name: Install System Deps (Linux)
         if: matrix.TARGET == 'linux'
         run: |
