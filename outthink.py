@@ -57,7 +57,7 @@ class OutThinkApp(ctk.CTk):
         self.webhooks = self.load_config()
 
         # 1. Window Configuration
-        self.title("OutThink // Architect Edition")
+        self.title("OutThink")
         self.geometry("1100x900")
         self.minsize(950, 850)
         self.configure(fg_color=COLOR_BG_MAIN)

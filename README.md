@@ -1,94 +1,127 @@
-# BookSummarizer
+# OutThink
 
-![BookSummarizer Logo](logo.jpg)
+![OutThink Logo](logo.png)
 
-**BookSummarizer** is a streamlined desktop utility designed to act as your personal knowledge engine. It bridges the gap between raw AI summaries and your "Second Brain" on Discord.
+> **The Personal Knowledge Engine.** > Bridge the gap between raw information and your Second Brain.
 
-It converts text summaries into clean, searchable Discord embeds and automatically generates audio versions (TTS) in English or Polish, featuring a distraction-free dark interface.
+**OutThink** is a streamlined desktop utility designed to transform summaries, notes, and ideas into high-impact, searchable content on Discord. Unlike standard note-taking apps, OutThink forces structure upon your knowledge, offering both deep-dive analysis and rapid "Headway-style" insights.
 
-## ✨ Key Features
-
-* **Cross-Platform:** Native support for **Windows** (.exe) and **Linux** (.AppImage).
-* **Auto-Generated Audio:** Automatically detects language (EN/PL) and synthesizes MP3 summaries via Google Neural TTS.
-* **Discord Integration:** Sends formatted, white-label embeds directly to your server.
-* **Smart Splitting:** Automatically handles long texts, bypassing Discord's 4096-character limit.
-* **Distraction-Free UI:** Built with CustomTkinter for a focus-centric dark mode experience.
-
-## 📥 Download
-
-Go to the **[Releases Page](../../releases)** to download the latest version for your system.
-
-## 🚀 How to Run
-
-### 🪟 Windows
-1.  Download `BookSummarizer.exe` from the Releases page.
-2.  Double-click to run.
-    * *Note: If Windows SmartScreen appears (because the app is not digitally signed), click "More info" -> "Run anyway".*
-
-### 🐧 Linux (AppImage)
-BookSummarizer is distributed as an **AppImage**, which works on almost all Linux distributions (Ubuntu, Fedora, Arch, Bazzite, SteamOS) without installation.
-
-#### Option A: Using AppImage Managers (Recommended)
-For the best experience (system integration, icon in menu), use a manager like **Gear Lever** or **AppImageLauncher**.
-
-* **Gear Lever:** Open Gear Lever, drag and drop `BookSummarizer.AppImage` into the window, and click "Integrate".
-* **AppImageLauncher:** Double-click the file and select "Integrate and run".
-
-#### Option B: The "Quick Run" (Terminal)
-1.  Open your terminal in the downloads folder.
-2.  Make the file executable:
-    ```bash
-    chmod +x BookSummarizer.AppImage
-    ```
-3.  Run it:
-    ```bash
-    ./BookSummarizer.AppImage
-    ```
-
-#### Option C: GUI Method
-Right-click the file → **Properties** → **Permissions** → Check **"Allow executing file as program"**. Then just double-click it.
+It features a minimalist **Cream & Taupe interface**, distraction-free writing environment, and a neural audio engine that turns your notes into podcasts.
 
 ---
 
-## ⚙️ Configuration (First Run)
+## 📸 Visual Tour
 
-The application requires Discord Webhook URLs to function. You have two ways to configure them:
+### The Workspace
+A distraction-free, minimalist environment designed for focus.
+![Application Interface](assets/app_ui.png)
 
-**Method 1: The `.env` file (Recommended for portability)**
-Create a file named `.env` in the same folder as the application and add your links:
-```env
-WH_BIZ="your_business_webhook_url"
-WH_PSY="your_psychology_webhook_url"
-WH_SCI="your_science_webhook_url"
-WH_OTH="your_other_webhook_url"
-```
+### The Output (Discord)
+Your knowledge, formatted beautifully with auto-calculated reading times and category-based color coding.
+![Discord Embed Preview](assets/discord_preview.gif)
+
+---
+
+## ✨ Key Features
+
+### 🧠 Dual Knowledge Modes
+* **Deep Dive:** For full book summaries or complex topics. Supports rich text formatting via a built-in toolbar (`Bold`, `Italic`, `Quotes`, `Lists`). Automatically splits long texts into readable chunks.
+* **⚡ Quick Spark (New):** A "Headway/Blinkist" style mode. Forces you to distill knowledge into **3 Key Insights** (Concept, Mechanism, Outcome). Renders on Discord with a specialized, high-impact structure.
+
+### 🎨 Elite UI & Aesthetics
+* **Minimalist Design:** A clean "Cream & Off-White" theme that reduces eye strain and promotes clarity.
+* **Smart Formatting:** Automatically calculates **Reading Time** and applies professional formatting to Discord embeds.
+* **Category Coloring:** Assigns distinct, muted luxury colors to categories (e.g., *Business* = Stone Grey, *Psychology* = Taupe).
+
+### 🎧 Neural Audio Engine
+* **Text-to-Speech:** Automatically converts your notes into an MP3 file and uploads it alongside the text. Perfect for reviewing knowledge on the go.
+* **Auto-Language Detection:** Seamlessly switches between English and Polish based on content.
+
+### ⚙️ User-Friendly Configuration
+* **In-App Channel Manager:** No more editing configuration files. Add, name, and manage your Discord Webhooks directly within the application's settings GUI.
+* **Cross-Platform:** Native support for **Windows** (.exe) and **Linux** (AppImage & Binary).
+
+---
+
+## 📥 Installation
+
+Go to the **[Releases Page](../../releases)** to download the latest version (`v1.5` or newer).
+
+### 🪟 Windows
+1.  Download `OutThink.exe`.
+2.  Double-click to run.
+    * *Note: If Windows SmartScreen appears, click "More info" -> "Run anyway".*
+
+### 🐧 Linux (Universal)
+We provide an **AppImage** compatible with Ubuntu, Fedora, Bazzite, SteamOS, and Arch.
+
+**Option A: AppImage (Recommended)**
+1.  Download `OutThink.AppImage`.
+2.  Right-click → Properties → Permissions → **"Allow executing file as program"**.
+3.  Double-click to run.
+    * *Tip: Use **Gear Lever** to integrate it into your system menu/dock.*
+
+**Option B: Standalone Binary**
+If you prefer raw binaries, download the file named `OutThink` (no extension), `chmod +x OutThink`, and run `./OutThink` in the terminal.
+
+---
+
+## ⚡ Quick Start Guide
+
+### 1. Setting up Discord Webhooks
+OutThink sends data to your Discord server via Webhooks. Here is how to get one:
+
+1.  Open **Discord** and go to your server settings.
+2.  Navigate to **Apps & Integrations** → **Webhooks**.
+3.  Click **"New Webhook"**.
+4.  Choose the channel where you want notes to appear.
+5.  Click **"Copy Webhook URL"**.
+
+### 2. Configuring OutThink
+1.  Open OutThink.
+2.  Click the **"⚙️ Manage Channels"** button in the sidebar.
+3.  Enter a **Category Name** (e.g., *Business*, *Coding*, *Life Ops*).
+4.  Paste the **Webhook URL** you copied from Discord.
+5.  Click **ADD CHANNEL**.
+    * *You can add as many channels as you like. They will appear in the main dropdown menu.*
+
+### 3. Using the App
+* **Select a Target Sector:** Choose the category from the sidebar dropdown.
+* **Choose Mode:**
+    * Use **Deep Dive** for standard notes. Use the toolbar for formatting.
+    * Use **Quick Spark** for 3-point summaries.
+* **Neural Audio:** Check the box in the sidebar if you want an MP3 file generated.
+* **Deploy:** Click **EXECUTE DEPLOYMENT** to send data to your Second Brain.
+
+---
 
 ## 🛠️ Build from Source
 
-If you prefer to run the raw Python code or build it yourself:
+Requirements: Python 3.10+, `pip`, `git`.
 
-    **Clone the repository:**
+1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/landzi1/BookSummarizer.git](https://github.com/landzi1/BookSummarizer.git)
-    cd BookSummarizer
+    git clone [https://github.com/landzi1/OutThink.git](https://github.com/landzi1/OutThink.git)
+    cd OutThink
     ```
 
-    **Install dependencies:**
+2.  **Install dependencies:**
     ```bash
     pip install -r requirements.txt
     ```
-    **Run the application:**
+
+3.  **Run the application:**
     ```bash
-    python booksummarizer.py
+    python outthink.py
     ```
+
+---
+
 ## 💻 Tech Stack
 
-* **Core: Python 3.10+**
+* **Core:** Python 3.10+
+* **UI Framework:** CustomTkinter (Modified)
+* **Audio:** gTTS (Google Text-to-Speech), LangDetect
+* **Build System:** PyInstaller, LinuxDeploy (via GitHub Actions)
 
-* **GUI:** CustomTkinter
-
-* **Audio Engine:** gTTS, LangDetect
-
-* **Build System:** PyInstaller, LinuxDeploy (GitHub Actions)
-
-Created by [landzi1](https://github.com/landzi1).
+**Created by [landzi1](https://github.com/landzi1).**
