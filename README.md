@@ -1,6 +1,7 @@
-# OutThink
-
-![OutThink Logo](logo.png)
+<div align="center">
+  <img src="logo.png" width="140" alt="OutThink Logo">
+  <h1>OutThink</h1>
+</div>
 
 > **The Personal Knowledge Engine.** > Bridge the gap between raw information and your Second Brain.
 
