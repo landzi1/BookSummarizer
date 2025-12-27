@@ -15,24 +15,31 @@ jobs:
         include:
           - os: ubuntu-latest
             TARGET: linux
-            # NAPRAWA IKONY DLA GEAR LEVER / APPIMAGE:
-            # 1. Tworzymy 'outthink.png' z 'logo.png'
-            # 2. Zmieniamy rozmiar na 256x256 (Linux Standard)
-            # 3. Podmieniamy w .desktop "Icon=logo" na "Icon=outthink"
-            # 4. LinuxDeploy używa nowej ikony
+            # ROZWIĄZANIE OSTATECZNE DLA LINUXA:
+            # 1. Tworzymy ikonę outthink.png
+            # 2. GENERUJEMY NOWY plik .desktop (żeby wykluczyć błędy w Twoim pliku)
+            # 3. Wymuszamy StartupWMClass (most dla ikony paska zadań)
             CMD_BUILD: |
-              echo "🔧 Fixing Line Endings..."
-              dos2unix OutThink.desktop
-
-              echo "🎨 Preparing Linux Icon (Standardization)..."
+              echo "🎨 Preparing Linux Icon..."
               cp logo.png outthink.png
               convert outthink.png -resize 256x256 outthink.png
 
-              echo "📝 Patching .desktop file to match icon name..."
-              sed -i 's/Icon=logo/Icon=outthink/g' OutThink.desktop
+              echo "📝 Generating FRESH .desktop file (The Nuclear Option)..."
+              # Tworzymy plik od zera, żeby mieć pewność, że wszystko jest idealnie
+              echo "[Desktop Entry]" > OutThink.desktop
+              echo "Type=Application" >> OutThink.desktop
+              echo "Name=OutThink" >> OutThink.desktop
+              echo "Comment=The Personal Knowledge Engine" >> OutThink.desktop
+              echo "Exec=OutThink" >> OutThink.desktop
+              echo "Icon=outthink" >> OutThink.desktop
+              echo "Categories=Utility;Education;" >> OutThink.desktop
+              echo "Terminal=false" >> OutThink.desktop
+              echo "StartupWMClass=OutThink" >> OutThink.desktop
+
+              # Upewniamy się, że system widzi ten plik jako Linuxowy (LF)
+              dos2unix OutThink.desktop
 
               echo "📦 Building Standard Linux Binary..."
-              # PyInstaller nadal używa logo.png (bo tak masz w kodzie Pythona)
               pyinstaller --noconfirm --onefile --windowed --name "OutThink" --add-data "logo.png:." --collect-all customtkinter --hidden-import=PIL --hidden-import=gtts --hidden-import=langdetect --hidden-import=requests outthink.py
 
               echo "⬇️ Downloading LinuxDeploy..."
@@ -41,17 +48,16 @@ jobs:
 
               echo "🚀 Creating AppImage..."
               export APPIMAGE_EXTRACT_AND_RUN=1
-              # Tu używamy -i outthink.png (dla systemu) zamiast logo.png
               ./linuxdeploy-x86_64.AppImage --appdir AppDir -e dist/OutThink -i outthink.png -d OutThink.desktop --output appimage
 
-              mv OutThink*.AppImage dist/OutThink.AppImage
+              # Zmieniamy nazwę pliku, żeby wymusić odświeżenie cache w Gear Lever
+              mv OutThink*.AppImage dist/OutThink-v1.6-Stable.AppImage
 
-            OUT_FILE_APPIMAGE: dist/OutThink.AppImage
+            OUT_FILE_APPIMAGE: dist/OutThink-v1.6-Stable.AppImage
             OUT_FILE_BINARY: dist/OutThink
 
           - os: windows-latest
             TARGET: windows
-            # Windows Build (Bez zmian)
             CMD_BUILD: pyinstaller --noconfirm --onefile --windowed --name "OutThink" --add-data "logo.png;." --collect-all customtkinter --hidden-import=PIL --hidden-import=gtts --hidden-import=langdetect --hidden-import=requests outthink.py
             OUT_FILE_EXE: dist/OutThink.exe
 
@@ -79,7 +85,6 @@ jobs:
         run: |
           ls -R
           ls logo.png || echo "❌ ERROR: LOGO MISSING"
-          ls OutThink.desktop || echo "❌ ERROR: DESKTOP FILE MISSING"
 
       - name: Build Application
         run: ${{ matrix.CMD_BUILD }}
