@@ -15,17 +15,24 @@ jobs:
         include:
           - os: ubuntu-latest
             TARGET: linux
-            # NAPRAWA:
-            # 1. dos2unix (naprawa enterów w pliku .desktop)
-            # 2. convert (zmniejszenie ikony z 2048px na 512px - to był Twój błąd)
+            # NAPRAWA IKONY DLA GEAR LEVER / APPIMAGE:
+            # 1. Tworzymy 'outthink.png' z 'logo.png'
+            # 2. Zmieniamy rozmiar na 256x256 (Linux Standard)
+            # 3. Podmieniamy w .desktop "Icon=logo" na "Icon=outthink"
+            # 4. LinuxDeploy używa nowej ikony
             CMD_BUILD: |
               echo "🔧 Fixing Line Endings..."
               dos2unix OutThink.desktop
 
-              echo "🎨 Resizing Icon to 512x512 (Fixing 2048px error)..."
-              convert logo.png -resize 512x512 logo.png
+              echo "🎨 Preparing Linux Icon (Standardization)..."
+              cp logo.png outthink.png
+              convert outthink.png -resize 256x256 outthink.png
+
+              echo "📝 Patching .desktop file to match icon name..."
+              sed -i 's/Icon=logo/Icon=outthink/g' OutThink.desktop
 
               echo "📦 Building Standard Linux Binary..."
+              # PyInstaller nadal używa logo.png (bo tak masz w kodzie Pythona)
               pyinstaller --noconfirm --onefile --windowed --name "OutThink" --add-data "logo.png:." --collect-all customtkinter --hidden-import=PIL --hidden-import=gtts --hidden-import=langdetect --hidden-import=requests outthink.py
 
               echo "⬇️ Downloading LinuxDeploy..."
@@ -34,7 +41,8 @@ jobs:
 
               echo "🚀 Creating AppImage..."
               export APPIMAGE_EXTRACT_AND_RUN=1
-              ./linuxdeploy-x86_64.AppImage --appdir AppDir -e dist/OutThink -i logo.png -d OutThink.desktop --output appimage
+              # Tu używamy -i outthink.png (dla systemu) zamiast logo.png
+              ./linuxdeploy-x86_64.AppImage --appdir AppDir -e dist/OutThink -i outthink.png -d OutThink.desktop --output appimage
 
               mv OutThink*.AppImage dist/OutThink.AppImage
 
@@ -43,7 +51,7 @@ jobs:
 
           - os: windows-latest
             TARGET: windows
-            # Windows (działa poprawnie)
+            # Windows Build (Bez zmian)
             CMD_BUILD: pyinstaller --noconfirm --onefile --windowed --name "OutThink" --add-data "logo.png;." --collect-all customtkinter --hidden-import=PIL --hidden-import=gtts --hidden-import=langdetect --hidden-import=requests outthink.py
             OUT_FILE_EXE: dist/OutThink.exe
 
@@ -55,7 +63,6 @@ jobs:
         with:
           python-version: '3.10'
 
-      # NAPRAWA: Dodano imagemagick (do zmiany rozmiaru logo) i dos2unix
       - name: Install System Deps (Linux)
         if: matrix.TARGET == 'linux'
         run: |
