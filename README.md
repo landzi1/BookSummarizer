@@ -1,16 +1,16 @@
 <div align="center">
-  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border: none; background: none;">
-    <tr style="border: none; background: none;">
-      <td style="border: none; background: none; padding-right: 20px; vertical-align: middle;">
-        <img src="logo.png" width="120" style="display: block;" alt="Logo" />
+  <table style="border: none; background: none;">
+    <tr>
+      <td style="border: none; padding-right: 20px; vertical-align: middle;">
+        <img src="logo.png" width="120" alt="Logo" />
       </td>
-      <td style="border: none; background: none; vertical-align: middle;">
+      <td style="border: none; vertical-align: middle;">
         <h1 style="border: none; margin: 0; padding: 0; font-size: 56px; font-weight: 800;">OutThink</h1>
       </td>
     </tr>
   </table>
 
-  <p style="font-size: 18px; color: #666; margin-top: 10px;">
+  <p style="font-size: 18px; color: #666;">
     <b>The Personal Knowledge Engine.</b><br>
     <i>Operationalize raw information into a high-fidelity Second Brain.</i>
   </p>
