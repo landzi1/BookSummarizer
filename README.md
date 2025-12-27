@@ -1,118 +1,116 @@
-<div display="inline-block">
-<h1 align="center" style="border-bottom: none;">
-  <img src="logo.png" width="140" style="vertical-align: middle; margin-right: 20px;" alt="Logo" />
-  <span style="vertical-align: middle;">OutThink</span>
-</h1></div>
+<div align="center">
+  <img src="logo.png" width="140" height="140" style="vertical-align: middle;" alt="Logo" />
+  <span style="font-size: 54px; font-weight: bold; vertical-align: middle; margin-left: 15px;">OutThink</span>
+</div>
 
-> **The Personal Knowledge Engine.** > Bridge the gap between raw information and your Second Brain.
+<div align="center">
+  <b>The Personal Knowledge Engine.</b><br>
+  <i>Operationalize raw information into a high-fidelity Second Brain.</i>
+</div>
 
-**OutThink** is a streamlined desktop utility designed to transform summaries, notes, and ideas into high-impact, searchable content on Discord. Unlike standard note-taking apps, OutThink forces structure upon your knowledge, offering both deep-dive analysis and rapid "Headway-style" insights.
+<br>
 
-It features a minimalist **Cream & Taupe interface**, distraction-free writing environment, and a neural audio engine that turns your notes into podcasts.
+**OutThink** is not a note-taking app; it is a **knowledge pipeline**. It solves the problem of "information hoarding" by enforcing structure upon your inputs. Whether you are processing a technical textbook or a strategic guide, OutThink compels you to distill chaos into searchable, high-impact assets on Discord.
+
+Engineered with a distraction-free **Cream & Taupe** aesthetic to minimize cognitive load, featuring a local-first architecture and neural audio synthesis for passive consumption.
 
 ---
 
-## 📸 Visual Tour
+## 📸 Visual Architecture
 
-### The Workspace
-A distraction-free, minimalist environment designed for focus.
+### The Interface
+A minimalist abstraction layer for focused input.
 ![Application Interface](assets/app_ui.png)
 
-### The Output (Discord)
-Your knowledge, formatted beautifully with auto-calculated reading times and category-based color coding.
+### The Payload (Discord)
+Structured data injection. Automated reading time calculation, semantic color-coding, and modular layout.
 ![Discord Embed Preview](assets/discord_preview.gif)
 
 ---
 
-## ✨ Key Features
+## ⚡ Core Capabilities
 
-### 🧠 Dual Knowledge Modes
-* **Deep Dive:** For full book summaries or complex topics. Supports rich text formatting via a built-in toolbar (`Bold`, `Italic`, `Quotes`, `Lists`). Automatically splits long texts into readable chunks.
-* **⚡ Quick Spark (New):** A "Headway/Blinkist" style mode. Forces you to distill knowledge into **3 Key Insights** (Concept, Mechanism, Outcome). Renders on Discord with a specialized, high-impact structure.
+### 🧠 Structured Ingestion Modes
+* **Deep Dive Protocol:** Designed for granular analysis. Supports rich text formatting (`Markdown`) via an integrated toolbar. The engine automatically fragments long-form content into Discord-compliant chunks without losing context.
+* **⚡ Quick Spark (Headway Model):** A rapid-fire synthesis mode. Forces the user to compress complex topics into **3 Axioms** (Concept, Mechanism, Outcome). Renders a specialized, high-contrast visualization on Discord.
 
-### 🎨 Elite UI & Aesthetics
-* **Minimalist Design:** A clean "Cream & Off-White" theme that reduces eye strain and promotes clarity.
-* **Smart Formatting:** Automatically calculates **Reading Time** and applies professional formatting to Discord embeds.
-* **Category Coloring:** Assigns distinct, muted luxury colors to categories (e.g., *Business* = Stone Grey, *Psychology* = Taupe).
+### 🎨 Cognitive UI Design
+* **Zero-Distraction Environment:** The UI purposefully lacks clutter. Every pixel serves the input process.
+* **Semantic Formatting:** The system creates visual hierarchy automatically using Discord Embeds, reducing the friction between "reading" and "understanding".
+* **Dynamic Tagging:** Categories (*Business, Psychology, Tech*) are visually distinct via a hardcoded muted-luxury color palette.
 
-### 🎧 Neural Audio Engine
-* **Text-to-Speech:** Automatically converts your notes into an MP3 file and uploads it alongside the text. Perfect for reviewing knowledge on the go.
-* **Auto-Language Detection:** Seamlessly switches between English and Polish based on content.
+### 🎧 Neural Audio Pipeline
+* **Local-to-Cloud Synthesis:** The engine utilizes Google's Neural TTS to generate podcast-grade audio summaries (.mp3) in real-time.
+* **Smart Language Detection:** Analyzes the input stream to automatically switch synthesis models between English and Polish.
 
-### ⚙️ User-Friendly Configuration
-* **In-App Channel Manager:** No more editing configuration files. Add, name, and manage your Discord Webhooks directly within the application's settings GUI.
-* **Cross-Platform:** Native support for **Windows** (.exe) and **Linux** (AppImage & Binary).
+### ⚙️ System Configuration
+* **Integrated Channel Manager:** Configure output endpoints (Webhooks) directly within the GUI. No config files or environment variables required.
+* **Portable Architecture:** Compiled as a standalone binary. No dependencies, no installation wizard.
 
 ---
 
-## 📥 Installation
+## 📥 Deployment
 
-Go to the **[Releases Page](../../releases)** to download the latest version (`v1.5` or newer).
+Navigate to **[Releases](../../releases)** to retrieve the latest build (`v1.5+`).
 
 ### 🪟 Windows
 1.  Download `OutThink.exe`.
-2.  Double-click to run.
-    * *Note: If Windows SmartScreen appears, click "More info" -> "Run anyway".*
+2.  Execute.
+    * *Note: The binary is unsigned. If SmartScreen triggers, acknowledge via "More info" -> "Run anyway".*
 
 ### 🐧 Linux (Universal)
-We provide an **AppImage** compatible with Ubuntu, Fedora, Bazzite, SteamOS, and Arch.
+Distributed as an **AppImage** for maximum compatibility (Ubuntu, Fedora, Arch, Bazzite, SteamOS).
 
-**Option A: AppImage (Recommended)**
+**Method A: AppImage (Recommended)**
 1.  Download `OutThink.AppImage`.
-2.  Right-click → Properties → Permissions → **"Allow executing file as program"**.
-3.  Double-click to run.
-    * *Tip: Use **Gear Lever** to integrate it into your system menu/dock.*
+2.  `Right-click` → `Properties` → `Permissions` → **Allow executing file as program**.
+3.  Execute.
+    * *Pro Tip: Use [Gear Lever](https://github.com/mijorus/gearlever) to manage AppImage integration.*
 
-**Option B: Standalone Binary**
-If you prefer raw binaries, download the file named `OutThink` (no extension), `chmod +x OutThink`, and run `./OutThink` in the terminal.
+**Method B: Raw Binary**
+For minimalists, download the `OutThink` binary, apply `chmod +x OutThink`, and execute via terminal.
 
 ---
 
-## ⚡ Quick Start Guide
+## 🚀 Initialization Guide
 
-### 1. Setting up Discord Webhooks
-OutThink sends data to your Discord server via Webhooks. Here is how to get one:
+### 1. Establish Discord Uplink
+OutThink pushes data via Webhooks.
+1.  **Discord Server Settings** → **Apps & Integrations** → **Webhooks**.
+2.  **New Webhook** → Select Target Channel.
+3.  **Copy Webhook URL**.
 
-1.  Open **Discord** and go to your server settings.
-2.  Navigate to **Apps & Integrations** → **Webhooks**.
-3.  Click **"New Webhook"**.
-4.  Choose the channel where you want notes to appear.
-5.  Click **"Copy Webhook URL"**.
+### 2. Configure Engine
+1.  Launch OutThink.
+2.  Select **"⚙️ Manage Channels"** in the sidebar.
+3.  Define a **Sector Name** (e.g., *Engineering, Strategy, Mental Models*).
+4.  Input the **Webhook URL**.
+5.  **ADD CHANNEL**.
 
-### 2. Configuring OutThink
-1.  Open OutThink.
-2.  Click the **"⚙️ Manage Channels"** button in the sidebar.
-3.  Enter a **Category Name** (e.g., *Business*, *Coding*, *Life Ops*).
-4.  Paste the **Webhook URL** you copied from Discord.
-5.  Click **ADD CHANNEL**.
-    * *You can add as many channels as you like. They will appear in the main dropdown menu.*
-
-### 3. Using the App
-* **Select a Target Sector:** Choose the category from the sidebar dropdown.
-* **Choose Mode:**
-    * Use **Deep Dive** for standard notes. Use the toolbar for formatting.
-    * Use **Quick Spark** for 3-point summaries.
-* **Neural Audio:** Check the box in the sidebar if you want an MP3 file generated.
-* **Deploy:** Click **EXECUTE DEPLOYMENT** to send data to your Second Brain.
+### 3. Execute
+* **Target Sector:** Select from the sidebar dropdown.
+* **Select Mode:** `Deep Dive` for documentation, `Quick Spark` for axioms.
+* **Neural Audio:** Toggle if audio synthesis is required.
+* **DEPLOY:** Initiates the processing and upload sequence.
 
 ---
 
 ## 🛠️ Build from Source
 
-Requirements: Python 3.10+, `pip`, `git`.
+**Prerequisites:** Python 3.10+, `pip`, `git`.
 
-1.  **Clone the repository:**
+1.  **Clone Repository:**
     ```bash
-    git clone [https://github.com/landzi1/OutThink.git](https://github.com/landzi1/OutThink.git)
+    git clone https://github.com/landzi1/OutThink.git
     cd OutThink
     ```
 
-2.  **Install dependencies:**
+2.  **Install Dependencies:**
     ```bash
     pip install -r requirements.txt
     ```
 
-3.  **Run the application:**
+3.  **Launch:**
     ```bash
     python outthink.py
     ```
@@ -121,9 +119,9 @@ Requirements: Python 3.10+, `pip`, `git`.
 
 ## 💻 Tech Stack
 
-* **Core:** Python 3.10+
-* **UI Framework:** CustomTkinter (Modified)
-* **Audio:** gTTS (Google Text-to-Speech), LangDetect
-* **Build System:** PyInstaller, LinuxDeploy (via GitHub Actions)
+* **Core Logic:** Python 3.10+
+* **GUI Engine:** CustomTkinter (Heavily Modified)
+* **Audio Synthesis:** gTTS (Google Neural API), LangDetect
+* **Packaging:** PyInstaller, LinuxDeploy (CI/CD via GitHub Actions)
 
-**Created by [landzi1](https://github.com/landzi1).**
+**Engineered by [landzi1](https://github.com/landzi1).**
