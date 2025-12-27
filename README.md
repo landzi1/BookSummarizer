@@ -1,19 +1,10 @@
 <div align="center">
-  <table style="border: none; background: none;">
-    <tr>
-      <td style="border: none; padding-right: 20px; vertical-align: middle;">
-        <img src="logo.png" width="120" alt="Logo" />
-      </td>
-      <td style="border: none; vertical-align: middle;">
-        <h1 style="border: none; margin: 0; padding: 0; font-size: 56px; font-weight: 800;">OutThink</h1>
-      </td>
-    </tr>
-  </table>
+  <img src="logo.png" width="140" height="140" style="vertical-align: middle;" alt="Logo" /><span style="font-size: 60px; font-weight: bold; vertical-align: middle; margin-left: 30px;">OutThink</span>
+</div>
 
-  <p style="font-size: 18px; color: #666;">
-    <b>The Personal Knowledge Engine.</b><br>
-    <i>Operationalize raw information into a high-fidelity Second Brain.</i>
-  </p>
+<div align="center" style="margin-top: 10px;">
+  <b>The Personal Knowledge Engine.</b><br>
+  <i>Operationalize raw information into a high-fidelity Second Brain.</i>
 </div>
 ---
 
