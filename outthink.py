@@ -68,16 +68,17 @@ class OutThinkApp(ctk.CTk):
             img_path = resource_path("logo.png")
             raw_img = Image.open(img_path).convert("RGBA")
 
-            icon_size = (64, 64)
-            app_icon_img = raw_img.resize(icon_size, Image.Resampling.LANCZOS)
-            self.icon_photo = ImageTk.PhotoImage(app_icon_img)
-            self.wm_iconphoto(True, self.icon_photo)
+            safe_icon = raw_img.resize((256, 256), Image.Resampling.LANCZOS)
+
+            self.system_icon = ImageTk.PhotoImage(safe_icon)
+            self.iconphoto(False, self.system_icon)
+            # ---------------------------------------
 
             display_size = (110, 110)
             output_img = raw_img.resize(display_size, Image.Resampling.LANCZOS)
             self.sidebar_logo = ctk.CTkImage(light_image=output_img, dark_image=output_img, size=display_size)
-        except Exception:
-            pass
+        except Exception as e:
+            print(f"Warning: Logo loading failed: {e}")
 
         # 3. Grid Layout
         self.grid_columnconfigure(1, weight=1)
@@ -100,7 +101,7 @@ class OutThinkApp(ctk.CTk):
                                        text_color=COLOR_TEXT_MAIN)
         self.lbl_app_name.pack(anchor="center")
 
-        self.lbl_ver = ctk.CTkLabel(self.brand_frame, text="v1.6 CLEAN",
+        self.lbl_ver = ctk.CTkLabel(self.brand_frame, text="v1.5 STABLE",
                                   font=ctk.CTkFont(family="JetBrains Mono", size=10),
                                   text_color=COLOR_ACCENT)
         self.lbl_ver.pack(anchor="center", pady=(2, 0))

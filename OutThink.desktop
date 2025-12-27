@@ -1,8 +1,9 @@
 [Desktop Entry]
 Type=Application
 Name=OutThink
-Comment=Architect Edition Knowledge Engine
+Comment=The Personal Knowledge Engine
 Exec=OutThink
 Icon=logo
 Categories=Utility;Education;
 Terminal=false
+StartupWMClass=OutThink
