@@ -16,8 +16,8 @@ jobs:
           - os: ubuntu-latest
             TARGET: linux
             # NAPRAWA:
-            # 1. dos2unix (naprawa enterów)
-            # 2. convert (naprawa za dużej ikony 2048px -> 512px)
+            # 1. dos2unix (naprawa enterów w pliku .desktop)
+            # 2. convert (zmniejszenie ikony z 2048px na 512px - to był Twój błąd)
             CMD_BUILD: |
               echo "🔧 Fixing Line Endings..."
               dos2unix OutThink.desktop
