@@ -1,14 +1,12 @@
-<div align="center" style="float: left;">
-  <img src="logo.png" width="130" height="130" style="vertical-align: middle; display: inline-block;" alt="OutThink Logo">
-  <h1 style="display: inline-block; vertical-align: middle; margin: 0; padding-left: 20px; border-bottom: none; font-size: 60px; float:left;">OutThink</h1>
-</div>
+<p align="center">
+  <img src="logo.png" width="120" height="120" style="vertical-align: middle; margin-right: 15px;" alt="OutThink Logo" />
+  <span style="font-size: 60px; font-weight: 800; vertical-align: middle; line-height: 120px;">OutThink</span>
+</p>
 
-<div align="center" style="margin-top: 10px;">
-  <p style="font-size: 18px; color: #666;">
-    <b>The Personal Knowledge Engine.</b><br>
-    <i>Operationalize raw information into a high-fidelity Second Brain.</i>
-  </p>
-</div>
+<p align="center" style="font-size: 18px; color: #666; margin-top: -10px;">
+  <b>The Personal Knowledge Engine.</b><br>
+  <i>Operationalize raw information into a high-fidelity Second Brain.</i>
+</p>
 
 ---
 
