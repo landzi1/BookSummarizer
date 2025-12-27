@@ -43,11 +43,30 @@ ctk.set_default_color_theme("blue")
 DEFAULT_PLACEHOLDER = "Paste your knowledge stream here..."
 
 def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
     try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
         base_path = sys._MEIPASS
     except Exception:
-        base_path = os.path.abspath(".")
-    return os.path.join(base_path, relative_path)
+        # Fallback for dev / onedir
+        base_path = os.path.dirname(os.path.abspath(__file__))
+
+    path = os.path.join(base_path, relative_path)
+
+    # Fallback: Check if file exists, if not, try CWD or AppDir (Critical for AppImage)
+    if not os.path.exists(path):
+        # 1. Try CWD (Current Working Directory)
+        cwd_path = os.path.join(os.getcwd(), relative_path)
+        if os.path.exists(cwd_path):
+            return cwd_path
+
+        # 2. Try APPDIR (AppImage Mount Point)
+        if "APPDIR" in os.environ:
+            app_path = os.path.join(os.environ["APPDIR"], relative_path)
+            if os.path.exists(app_path):
+                return app_path
+
+    return path
 
 class OutThinkApp(ctk.CTk):
     def __init__(self):
@@ -84,6 +103,10 @@ class OutThinkApp(ctk.CTk):
             self.sidebar_logo = ctk.CTkImage(light_image=output_img, dark_image=output_img, size=display_size)
         except Exception as e:
             print(f"Warning: Logo loading failed: {e}")
+            # Alert the user if logo fails (Critical for debugging)
+            try:
+                messagebox.showwarning("Resource Error", f"Could not load logo.png:\n{e}\n\nSearch path: {img_path}")
+            except: pass
 
         # 3. Grid Layout
         self.grid_columnconfigure(1, weight=1)

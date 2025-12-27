@@ -42,18 +42,27 @@ jobs:
               echo "📦 Building Standard Linux Binary..."
               pyinstaller --noconfirm --onefile --windowed --name "OutThink" --add-data "logo.png:." --collect-all customtkinter --hidden-import=PIL --hidden-import=gtts --hidden-import=langdetect --hidden-import=requests outthink.py
 
-              echo "⬇️ Downloading LinuxDeploy..."
+              echo "⬇️ Downloading Tools..."
               wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
-              chmod +x linuxdeploy-x86_64.AppImage
+              wget https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage
+              chmod +x linuxdeploy-x86_64.AppImage appimagetool-x86_64.AppImage
 
-              echo "🚀 Creating AppImage..."
+              echo "🚀 Preparing AppDir..."
               export APPIMAGE_EXTRACT_AND_RUN=1
-              ./linuxdeploy-x86_64.AppImage --appdir AppDir -e dist/OutThink -i outthink.png -d OutThink.desktop --output appimage
+              # Phase 1: Populate AppDir using LinuxDeploy
+              ./linuxdeploy-x86_64.AppImage --appdir AppDir -e dist/OutThink -i outthink.png -d OutThink.desktop
 
-              # Zmieniamy nazwę pliku, żeby wymusić odświeżenie cache w Gear Lever
-              mv OutThink*.AppImage dist/OutThink-v1.6-Stable.AppImage
+              echo "🎨 Injecting Manual Icons..."
+              # 1. FORCE the icon for AppImage specification (Fixes GearLever/Menu issues)
+              cp outthink.png AppDir/.DirIcon
+              # 2. Copy logo.png to AppDir root (Fallback for internal app resource loader)
+              cp logo.png AppDir/logo.png
 
-            OUT_FILE_APPIMAGE: dist/OutThink-v1.6-Stable.AppImage
+              echo "📦 Packaging AppImage..."
+              # Phase 2: Build final AppImage using AppImageTool
+              ./appimagetool-x86_64.AppImage AppDir dist/OutThink.AppImage
+
+            OUT_FILE_APPIMAGE: dist/OutThink.AppImage
             OUT_FILE_BINARY: dist/OutThink
 
           - os: windows-latest
@@ -87,7 +96,8 @@ jobs:
           ls logo.png || echo "❌ ERROR: LOGO MISSING"
 
       - name: Build Application
-        run: ${{ matrix.CMD_BUILD }}
+        run: |
+          ${{ matrix.CMD_BUILD }}
 
       # --- UPLOAD ---
 
